@@ -1,135 +1,129 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Jujutsu Kaisen Arena - Frontend Implementation",
+  "title": "Replace JJK characters with Streets of Tyson roster and add login screen",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Create a game arena where Jujutsu Kaisen characters can engage in turn-based combat during the Culling Games",
+      "id": "REQ-2",
+      "summary": "Update character selection screen to display the new Streets of Tyson character roster with their themed portraits and stats",
       "acceptanceCriteria": [
-        "Game arena is visually rendered with a Culling Games theme",
-        "Players can see character models or representations on screen",
-        "Combat interface allows for turn-based actions"
+        "Character selection screen fetches and displays Streets of Tyson characters",
+        "Character cards show appropriate Streets of Tyson themed information",
+        "Both players can select from the full roster"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Arena.tsx",
-          "operation": "create",
-          "description": "Create the main arena battle page component that displays the combat arena with Culling Games theme. Render the arena background using the generated image frontend/public/assets/generated/arena-bg.dim_1920x1080.png. Display both player characters with their portraits, health bars, and action buttons. Include turn-based combat logic that calls backend methods from the backend interface (createMatch, getMatch). This is a 2D game with a turn-based combat system."
-        },
-        {
-          "path": "frontend/src/components/BattleArena.tsx",
-          "operation": "create",
-          "description": "Create a reusable battle arena component that manages the combat interface layout. Display character portraits for both fighters, combat action buttons (attack, defend, cursed technique, special move), and visual feedback for combat results. Reference character portrait images: frontend/public/assets/generated/yuji-portrait.dim_300x400.png, frontend/public/assets/generated/megumi-portrait.dim_300x400.png, frontend/public/assets/generated/nobara-portrait.dim_300x400.png, frontend/public/assets/generated/maki-portrait.dim_300x400.png."
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/CharacterSelection.tsx",
           "operation": "modify",
-          "description": "Add routing for the Arena page and CharacterSelection page. Wire the new routes into the application router so users can navigate to /arena and /character-selection. Add navigation links in the main app layout."
+          "description": "Update the character selection page to display Streets of Tyson characters. The page already fetches characters from the backend via useGetCharacters hook. Update UI text and labels to reflect Streets of Tyson theme while maintaining the existing character card display structure with stats (attack, defense, cursed energy). Ensure both player selection panels work with the new roster."
+        },
+        {
+          "path": "frontend/src/components/CharacterCard.tsx",
+          "operation": "modify",
+          "description": "Update the character card component to reference the newly generated Streets of Tyson character portrait images from frontend/public/assets/generated/streets-tyson-char1.dim_400x400.png through streets-tyson-char8.dim_400x400.png. Map character names to their corresponding portrait images. Maintain the existing card layout showing character name and stats."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char1.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 1 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char2.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 2 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char3.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 3 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char4.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 4 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char5.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 5 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char6.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 6 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char7.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 7 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
+        },
+        {
+          "path": "frontend/public/assets/generated/streets-tyson-char8.dim_400x400.png",
+          "operation": "create",
+          "description": "Wire the generated Streets of Tyson character portrait for book 8 character into the assets directory. This image will be referenced by CharacterCard component when displaying the character roster."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Create a combat system where players can select actions (attack, defend, use cursed technique, or special move) during their turn",
+      "summary": "Create a login screen accessible by pressing the Q key that serves as the entry point to the game, using the existing Internet Identity authentication system",
       "acceptanceCriteria": [
-        "Players can view available actions for their selected character",
-        "Action selection triggers appropriate combat calculations in the backend",
-        "Combat results are displayed with visual feedback"
+        "Q key triggers display of login screen",
+        "Login screen integrates with existing Internet Identity authentication",
+        "After successful login, user proceeds to character selection",
+        "Login screen displays 'JJK Arena' as the game title"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/ActionPanel.tsx",
+          "path": "frontend/src/pages/Login.tsx",
           "operation": "create",
-          "description": "Create an action panel component that displays available combat actions (attack, defend, use cursed technique, special move) as interactive buttons. Wire action selections to backend match methods from the backend interface. Display visual feedback for action results including damage numbers, status effects, and turn progression."
+          "description": "Create a new login screen component that displays the JJK Arena branding using the generated logo from frontend/public/assets/generated/jjk-arena-logo.dim_800x200.png and background image from frontend/public/assets/generated/login-bg.dim_1920x1080.png. Integrate with the existing useInternetIdentity hook for authentication. Show a login button that triggers Internet Identity authentication. After successful login, programmatically navigate to the character selection page. Include a keyboard listener for the Q key to trigger the login modal or action when not yet authenticated."
         },
         {
-          "path": "frontend/src/hooks/useCombat.ts",
+          "path": "frontend/public/assets/generated/jjk-arena-logo.dim_800x200.png",
           "operation": "create",
-          "description": "Create a custom hook to manage combat state and action execution. Handle action selection, call backend getMatch method to retrieve current match state, process combat results, and manage turn progression. Track current turn indicator and available actions based on character's cursed energy."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Design a character selection screen where players can choose their fighter before entering the arena",
-      "acceptanceCriteria": [
-        "Character roster is displayed with portraits or avatars",
-        "Players can click to select a character",
-        "Selected character's abilities and stats are previewed"
-      ],
-      "file_operations": [
+          "description": "Wire the generated JJK Arena logo image into the assets directory. This logo will be displayed on the login screen and potentially in the game header."
+        },
+        {
+          "path": "frontend/public/assets/generated/login-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Wire the generated login background image into the assets directory. This background will be used on the login screen to set the visual atmosphere."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update the router configuration to add a new login route at path '/login' that renders the Login component. Make this the default route or add logic to redirect unauthenticated users to /login before they can access character selection. Wire the Q key listener at the app level to show the login screen when Q is pressed and the user is not authenticated. Import and register the new Login page component."
+        },
         {
           "path": "frontend/src/pages/CharacterSelection.tsx",
-          "operation": "create",
-          "description": "Create the character selection screen that displays the roster of playable characters. Use generated portrait images: frontend/public/assets/generated/yuji-portrait.dim_300x400.png, frontend/public/assets/generated/megumi-portrait.dim_300x400.png, frontend/public/assets/generated/nobara-portrait.dim_300x400.png, frontend/public/assets/generated/maki-portrait.dim_300x400.png. Fetch character data using backend methods (getCharactersByAttack, getCharactersByDefense, getCharactersByEnergy) from the backend interface. Display character stats (health, attack, defense, cursed energy) and abilities in a preview panel when a character is clicked. Include a confirm button that navigates to /arena with selected character."
-        },
-        {
-          "path": "frontend/src/components/CharacterCard.tsx",
-          "operation": "create",
-          "description": "Create a reusable character card component that displays a character's portrait, name, and key stats. Accept character data from the Character interface type. Make the card interactive with hover effects and click handlers for selection. Show visual indication when a character is selected."
-        },
-        {
-          "path": "frontend/src/hooks/useCharacters.ts",
-          "operation": "create",
-          "description": "Create a custom hook to fetch and manage character roster data from the backend. Call getCharactersByAttack, getCharactersByDefense, or getCharactersByEnergy methods from the backend interface. Provide loading states and error handling for character data retrieval."
+          "operation": "modify",
+          "description": "Add authentication guard logic at the top of the CharacterSelection component. Use the useInternetIdentity hook to check if the user is authenticated. If not authenticated, redirect to the login page. This ensures users must log in before accessing character selection."
         }
       ]
     },
     {
-      "id": "REQ-6",
-      "summary": "Create a battle UI that displays character health bars, cursed energy meters, available abilities, and turn indicators",
+      "id": "REQ-4",
+      "summary": "Update all UI text, branding, and references to reflect 'JJK Arena' as the official game name while keeping the Streets of Tyson character theme",
       "acceptanceCriteria": [
-        "Health and cursed energy are shown as visual bars or meters",
-        "Current turn is clearly indicated",
-        "Ability buttons are interactive and show cooldowns or costs"
+        "Page title displays 'JJK Arena'",
+        "Header and branding elements show 'JJK Arena'",
+        "Game maintains Streets of Tyson character roster while using JJK Arena branding"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/HealthBar.tsx",
-          "operation": "create",
-          "description": "Create a health bar component that displays current and maximum health as a visual progress bar. Use dark red color scheme with smooth animations for health changes. Accept current and max health values as props based on the Character interface."
-        },
-        {
-          "path": "frontend/src/components/CursedEnergyMeter.tsx",
-          "operation": "create",
-          "description": "Create a cursed energy meter component that displays current and maximum cursed energy. Use the generated cursed energy icon frontend/public/assets/generated/cursed-energy-icon.dim_64x64.png. Style with purple/violet colors to represent cursed energy. Show energy cost for abilities and animate energy consumption."
-        },
-        {
-          "path": "frontend/src/components/TurnIndicator.tsx",
-          "operation": "create",
-          "description": "Create a turn indicator component that clearly shows whose turn it is in the battle. Use the currentTurn field from the Match interface. Display with prominent visual styling and animations when turn changes."
-        },
-        {
-          "path": "frontend/src/components/AbilityButton.tsx",
-          "operation": "create",
-          "description": "Create an ability button component for cursed techniques and special moves. Display ability name, cursed energy cost using the cursed energy icon frontend/public/assets/generated/cursed-energy-icon.dim_64x64.png, and cooldown status. Disable button when insufficient energy or ability is on cooldown."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Apply a distinctive dark fantasy anime-inspired visual theme with bold contrasts, dramatic lighting, and a gritty combat aesthetic that evokes the Jujutsu Kaisen universe and Culling Games atmosphere",
-      "acceptanceCriteria": [
-        "Color palette uses dark tones with vibrant accent colors (reds, purples, electric blues)",
-        "Typography is bold and dramatic, suitable for combat scenarios",
-        "Layout emphasizes intensity and action with dynamic visual elements"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Apply dark fantasy anime-inspired theme with custom CSS variables for the Jujutsu Kaisen aesthetic. Define color palette with dark base tones (#0a0a0a, #1a1a1a) and vibrant accents (crimson red #dc2626, electric purple #a855f7, electric blue #3b82f6). Add dramatic text shadows, gradient overlays, and glow effects for cursed energy. Define custom animations for combat effects."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind configuration with Jujutsu Kaisen theme colors and custom utilities. Add dark theme colors (black, gray-900, gray-800), accent colors (red-600, purple-500, blue-500), and custom font families for bold dramatic typography. Configure custom spacing and border radius for combat UI elements."
+          "description": "Update the page title from 'Jujutsu Kaisen Arena' to 'JJK Arena' in the HTML head section."
         },
         {
           "path": "frontend/src/components/GameHeader.tsx",
-          "operation": "create",
-          "description": "Create a game header component that displays the game logo using frontend/public/assets/generated/game-logo.dim_400x150.png. Style with dramatic lighting effects and position at the top of all game screens. Include navigation elements with dark fantasy aesthetic."
+          "operation": "modify",
+          "description": "Update the header component to display 'JJK Arena' branding. Replace or supplement the existing logo with the generated JJK Arena logo from frontend/public/assets/generated/jjk-arena-logo.dim_800x200.png. Maintain the existing purple glow effect and backdrop blur styling."
+        },
+        {
+          "path": "frontend/src/pages/CharacterSelection.tsx",
+          "operation": "modify",
+          "description": "Update any page-level headings or titles to reference 'JJK Arena' instead of 'Jujutsu Kaisen Arena'. Ensure the page describes the game as JJK Arena while displaying the Streets of Tyson character roster."
         }
       ]
     }

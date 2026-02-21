@@ -5,6 +5,7 @@ import { useCharacters } from '../hooks/useCharacters';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import type { Character } from '../backend';
 import { Swords, Shield, Zap } from 'lucide-react';
 
@@ -23,14 +24,35 @@ export default function CharacterSelection() {
     }
   };
 
-  const getCharacterImage = (index: number) => {
-    const images = [
-      '/assets/generated/yuji-portrait.dim_300x400.png',
-      '/assets/generated/megumi-portrait.dim_300x400.png',
-      '/assets/generated/nobara-portrait.dim_300x400.png',
-      '/assets/generated/maki-portrait.dim_300x400.png',
-    ];
-    return images[index] || images[0];
+  const getCharacterImage = (name: string) => {
+    const imageMap: Record<string, string> = {
+      'Tyson': '/assets/generated/streets-tyson-char1.dim_400x400.png',
+      'Peter': '/assets/generated/streets-tyson-char2.dim_400x400.png',
+      'Dustin': '/assets/generated/streets-tyson-char3.dim_400x400.png',
+      'Corey': '/assets/generated/streets-tyson-char4.dim_400x400.png',
+      'Michael': '/assets/generated/streets-tyson-char5.dim_400x400.png',
+      'Gary Math Teacher': '/assets/generated/streets-tyson-char6.dim_400x400.png',
+      'Funny Bartender Joey': '/assets/generated/streets-tyson-char7.dim_400x400.png',
+      'Rodney The Rat': '/assets/generated/streets-tyson-char8.dim_400x400.png',
+      'The Fox': '/assets/generated/streets-tyson-char1.dim_400x400.png',
+      'Hammerhead': '/assets/generated/streets-tyson-char2.dim_400x400.png',
+      'Peter From The Pier': '/assets/generated/streets-tyson-char3.dim_400x400.png',
+      'Smokin Guapo': '/assets/generated/streets-tyson-char4.dim_400x400.png',
+      'The Boxer': '/assets/generated/streets-tyson-char5.dim_400x400.png',
+      'The Snapper': '/assets/generated/streets-tyson-char6.dim_400x400.png',
+      'Counterfeiter': '/assets/generated/streets-tyson-char7.dim_400x400.png',
+      'Mighty Max': '/assets/generated/streets-tyson-char8.dim_400x400.png',
+      'Black Panther': '/assets/generated/streets-tyson-char1.dim_400x400.png',
+      'The Rooster': '/assets/generated/streets-tyson-char2.dim_400x400.png',
+      'Thunder God': '/assets/generated/streets-tyson-char3.dim_400x400.png',
+      'The Bulldog': '/assets/generated/streets-tyson-char4.dim_400x400.png',
+      'Sheldon Slapper': '/assets/generated/streets-tyson-char5.dim_400x400.png',
+      'Joey The Janitor': '/assets/generated/streets-tyson-char6.dim_400x400.png',
+      'Mad Scientist': '/assets/generated/streets-tyson-char7.dim_400x400.png',
+      'Bosco & Frisky': '/assets/generated/streets-tyson-char8.dim_400x400.png',
+      'Doves': '/assets/generated/streets-tyson-char1.dim_400x400.png',
+    };
+    return imageMap[name] || '/assets/generated/streets-tyson-char1.dim_400x400.png';
   };
 
   const selectedChar1 = selectedPlayer1 !== null && characters ? characters[selectedPlayer1] : null;
@@ -42,7 +64,8 @@ export default function CharacterSelection() {
         <h1 className="text-5xl font-bold bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
           Select Your Fighters
         </h1>
-        <p className="text-xl text-muted-foreground">Choose two characters to enter the Culling Games arena</p>
+        <p className="text-xl text-muted-foreground">Choose two Streets of Tyson characters to battle</p>
+        <p className="text-sm text-muted-foreground">Complete roster from books 1-25</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -55,23 +78,25 @@ export default function CharacterSelection() {
           <CardContent>
             {isLoading ? (
               <div className="grid grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <Skeleton key={i} className="h-64 w-full" />
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4">
-                {characters?.map((char, index) => (
-                  <CharacterCard
-                    key={index}
-                    character={char}
-                    imageUrl={getCharacterImage(index)}
-                    isSelected={selectedPlayer1 === index}
-                    isDisabled={selectedPlayer2 === index}
-                    onClick={() => setSelectedPlayer1(index)}
-                  />
-                ))}
-              </div>
+              <ScrollArea className="h-[500px] pr-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {characters?.map((char, index) => (
+                    <CharacterCard
+                      key={index}
+                      character={char}
+                      imageUrl={getCharacterImage(char.name)}
+                      isSelected={selectedPlayer1 === index}
+                      isDisabled={selectedPlayer2 === index}
+                      onClick={() => setSelectedPlayer1(index)}
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
             )}
           </CardContent>
         </Card>
@@ -85,23 +110,25 @@ export default function CharacterSelection() {
           <CardContent>
             {isLoading ? (
               <div className="grid grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <Skeleton key={i} className="h-64 w-full" />
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4">
-                {characters?.map((char, index) => (
-                  <CharacterCard
-                    key={index}
-                    character={char}
-                    imageUrl={getCharacterImage(index)}
-                    isSelected={selectedPlayer2 === index}
-                    isDisabled={selectedPlayer1 === index}
-                    onClick={() => setSelectedPlayer2(index)}
-                  />
-                ))}
-              </div>
+              <ScrollArea className="h-[500px] pr-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {characters?.map((char, index) => (
+                    <CharacterCard
+                      key={index}
+                      character={char}
+                      imageUrl={getCharacterImage(char.name)}
+                      isSelected={selectedPlayer2 === index}
+                      isDisabled={selectedPlayer1 === index}
+                      onClick={() => setSelectedPlayer2(index)}
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
             )}
           </CardContent>
         </Card>

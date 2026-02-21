@@ -1,15 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Create a turn-based 2D game where Jujutsu Kaisen characters battle in a Culling Games arena with unique abilities and a points system.
+**Goal:** Replace JJK characters with Streets of Tyson roster and add Q-key login screen while maintaining JJK Arena branding.
 
 **Planned changes:**
-- Build a character selection screen with Yuji, Megumi, Nobara, and Maki
-- Implement turn-based combat system with attack, defend, cursed technique, and special move actions
-- Create combat UI with health bars, cursed energy meters, ability buttons, and turn indicators
-- Design dark fantasy anime-inspired visual theme with dramatic lighting and bold contrasts
-- Develop backend character data with unique stats and abilities for each fighter
-- Implement Culling Games points system that awards points for defeating opponents
-- Create arena battleground with atmospheric Jujutsu Kaisen theme
+- Replace all backend characters with Streets of Tyson roster from books 1-25
+- Update character selection to display new Streets of Tyson characters with themed portraits
+- Add login screen triggered by Q key using Internet Identity authentication
+- Update all UI branding to "JJK Arena"
 
-**User-visible outcome:** Players can select a Jujutsu Kaisen character, enter a Culling Games arena, and engage in turn-based combat using character-specific cursed techniques while tracking points earned from victories.
+**User-visible outcome:** Players press Q to access a login screen, authenticate via Internet Identity, then select from Streets of Tyson characters in a game branded as "JJK Arena" with the same combat controls and battle system.

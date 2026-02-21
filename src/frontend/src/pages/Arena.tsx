@@ -8,17 +8,17 @@ import { ArrowLeft } from 'lucide-react';
 export default function Arena() {
   const navigate = useNavigate();
   const search = useSearch({ from: '/arena' }) as { p1?: number; p2?: number };
-  const [matchId, setMatchId] = useState<bigint | null>(null);
+  const [battleId, setBattleId] = useState<bigint | null>(null);
 
-  const { createMatch, match, isCreating } = useCombat(matchId);
+  const { createBattle, battle, isCreating } = useCombat(battleId);
 
   useEffect(() => {
-    if (search.p1 !== undefined && search.p2 !== undefined && !matchId) {
-      createMatch(BigInt(search.p1), BigInt(search.p2)).then((id) => {
-        setMatchId(id);
+    if (search.p1 !== undefined && search.p2 !== undefined && !battleId) {
+      createBattle(BigInt(search.p1), BigInt(search.p2)).then((id) => {
+        setBattleId(id);
       });
     }
-  }, [search.p1, search.p2, matchId, createMatch]);
+  }, [search.p1, search.p2, battleId, createBattle]);
 
   const handleBackToSelection = () => {
     navigate({ to: '/' });
@@ -27,7 +27,7 @@ export default function Arena() {
   if (!search.p1 || !search.p2) {
     return (
       <div className="text-center space-y-4">
-        <h2 className="text-2xl font-bold text-destructive">Invalid Match Configuration</h2>
+        <h2 className="text-2xl font-bold text-destructive">Invalid Battle Configuration</h2>
         <p className="text-muted-foreground">Please select characters first</p>
         <Button onClick={handleBackToSelection}>
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -37,7 +37,7 @@ export default function Arena() {
     );
   }
 
-  if (isCreating || !match) {
+  if (isCreating || !battle) {
     return (
       <div className="text-center space-y-4">
         <div className="animate-pulse">
@@ -58,7 +58,7 @@ export default function Arena() {
         </Button>
       </div>
 
-      <BattleArena match={match} matchId={matchId!} />
+      <BattleArena battle={battle} battleId={battleId!} />
     </div>
   );
 }

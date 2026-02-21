@@ -83,3 +83,113 @@
         box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
     }
 }
+
+@keyframes domainPulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes blackFlashSpin {
+    0% {
+        transform: rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes blackFlashFade {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes blackFlashParticle {
+    0% {
+        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) translateY(0);
+        opacity: 1;
+        scale: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) translateY(-150px);
+        opacity: 0;
+        scale: 0;
+    }
+}
+
+.animate-jump {
+    animation: jump 0.6s ease-in-out;
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-80px);
+    }
+}
+
+.animate-crouch {
+    animation: crouch 0.4s ease-in-out;
+}
+
+@keyframes crouch {
+    0%, 100% {
+        transform: translateY(0) scaleY(1);
+    }
+    50% {
+        transform: translateY(20px) scaleY(0.8);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

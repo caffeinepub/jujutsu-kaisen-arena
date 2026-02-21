@@ -8,14 +8,34 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const Character = IDL.Record({
+export const DomainExpansion = IDL.Record({
   'name' : IDL.Text,
+  'defenseBoost' : IDL.Nat,
+  'effect' : IDL.Text,
+  'powerBoost' : IDL.Nat,
+  'damageReduction' : IDL.Nat,
+});
+export const Character = IDL.Record({
+  'elementalResistances' : IDL.Record({
+    'fire' : IDL.Nat,
+    'wind' : IDL.Nat,
+    'lightning' : IDL.Nat,
+  }),
+  'name' : IDL.Text,
+  'moveset' : IDL.Vec(IDL.Text),
+  'virusType' : IDL.Opt(IDL.Text),
+  'speed' : IDL.Nat,
   'defense' : IDL.Nat,
   'cursedEnergy' : IDL.Nat,
+  'ultimate' : IDL.Text,
+  'personalBest' : IDL.Nat,
+  'abilities' : IDL.Vec(IDL.Text),
   'attack' : IDL.Nat,
+  'domainExpansion' : DomainExpansion,
   'health' : IDL.Nat,
+  'elementalAffinity' : IDL.Text,
 });
-export const Match = IDL.Record({
+export const Battle = IDL.Record({
   'score' : IDL.Nat,
   'currentTurn' : IDL.Nat,
   'player1' : Character,
@@ -23,24 +43,47 @@ export const Match = IDL.Record({
 });
 
 export const idlService = IDL.Service({
-  'createMatch' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Nat], []),
+  'createBattle' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Nat], []),
+  'executeDomainExpansion' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Text], []),
+  'getAllCharacters' : IDL.Func([], [IDL.Vec(Character)], ['query']),
+  'getBattle' : IDL.Func([IDL.Nat], [Battle], ['query']),
+  'getCharacterByName' : IDL.Func([IDL.Text], [Character], ['query']),
   'getCharactersByAttack' : IDL.Func([], [IDL.Vec(Character)], ['query']),
   'getCharactersByDefense' : IDL.Func([], [IDL.Vec(Character)], ['query']),
   'getCharactersByEnergy' : IDL.Func([], [IDL.Vec(Character)], ['query']),
-  'getMatch' : IDL.Func([IDL.Nat], [Match], ['query']),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
-  const Character = IDL.Record({
+  const DomainExpansion = IDL.Record({
     'name' : IDL.Text,
+    'defenseBoost' : IDL.Nat,
+    'effect' : IDL.Text,
+    'powerBoost' : IDL.Nat,
+    'damageReduction' : IDL.Nat,
+  });
+  const Character = IDL.Record({
+    'elementalResistances' : IDL.Record({
+      'fire' : IDL.Nat,
+      'wind' : IDL.Nat,
+      'lightning' : IDL.Nat,
+    }),
+    'name' : IDL.Text,
+    'moveset' : IDL.Vec(IDL.Text),
+    'virusType' : IDL.Opt(IDL.Text),
+    'speed' : IDL.Nat,
     'defense' : IDL.Nat,
     'cursedEnergy' : IDL.Nat,
+    'ultimate' : IDL.Text,
+    'personalBest' : IDL.Nat,
+    'abilities' : IDL.Vec(IDL.Text),
     'attack' : IDL.Nat,
+    'domainExpansion' : DomainExpansion,
     'health' : IDL.Nat,
+    'elementalAffinity' : IDL.Text,
   });
-  const Match = IDL.Record({
+  const Battle = IDL.Record({
     'score' : IDL.Nat,
     'currentTurn' : IDL.Nat,
     'player1' : Character,
@@ -48,11 +91,14 @@ export const idlFactory = ({ IDL }) => {
   });
   
   return IDL.Service({
-    'createMatch' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Nat], []),
+    'createBattle' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Nat], []),
+    'executeDomainExpansion' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Text], []),
+    'getAllCharacters' : IDL.Func([], [IDL.Vec(Character)], ['query']),
+    'getBattle' : IDL.Func([IDL.Nat], [Battle], ['query']),
+    'getCharacterByName' : IDL.Func([IDL.Text], [Character], ['query']),
     'getCharactersByAttack' : IDL.Func([], [IDL.Vec(Character)], ['query']),
     'getCharactersByDefense' : IDL.Func([], [IDL.Vec(Character)], ['query']),
     'getCharactersByEnergy' : IDL.Func([], [IDL.Vec(Character)], ['query']),
-    'getMatch' : IDL.Func([IDL.Nat], [Match], ['query']),
   });
 };
 

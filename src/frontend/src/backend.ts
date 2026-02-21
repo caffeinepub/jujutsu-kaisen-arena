@@ -89,98 +89,250 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface Match {
+export interface DomainExpansion {
+    name: string;
+    defenseBoost: bigint;
+    effect: string;
+    powerBoost: bigint;
+    damageReduction: bigint;
+}
+export interface Battle {
     score: bigint;
     currentTurn: bigint;
     player1: Character;
     player2: Character;
 }
 export interface Character {
+    elementalResistances: {
+        fire: bigint;
+        wind: bigint;
+        lightning: bigint;
+    };
     name: string;
+    moveset: Array<string>;
+    virusType?: string;
+    speed: bigint;
     defense: bigint;
     cursedEnergy: bigint;
+    ultimate: string;
+    personalBest: bigint;
+    abilities: Array<string>;
     attack: bigint;
+    domainExpansion: DomainExpansion;
     health: bigint;
+    elementalAffinity: string;
 }
 export interface backendInterface {
-    createMatch(player1Index: bigint, player2Index: bigint): Promise<bigint>;
+    createBattle(player1Index: bigint, player2Index: bigint): Promise<bigint>;
+    executeDomainExpansion(battleId: bigint, playerId: bigint): Promise<string>;
+    getAllCharacters(): Promise<Array<Character>>;
+    getBattle(battleId: bigint): Promise<Battle>;
+    getCharacterByName(name: string): Promise<Character>;
     getCharactersByAttack(): Promise<Array<Character>>;
     getCharactersByDefense(): Promise<Array<Character>>;
     getCharactersByEnergy(): Promise<Array<Character>>;
-    getMatch(matchId: bigint): Promise<Match>;
 }
+import type { Battle as _Battle, Character as _Character, DomainExpansion as _DomainExpansion } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async createMatch(arg0: bigint, arg1: bigint): Promise<bigint> {
+    async createBattle(arg0: bigint, arg1: bigint): Promise<bigint> {
         if (this.processError) {
             try {
-                const result = await this.actor.createMatch(arg0, arg1);
+                const result = await this.actor.createBattle(arg0, arg1);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.createMatch(arg0, arg1);
+            const result = await this.actor.createBattle(arg0, arg1);
             return result;
+        }
+    }
+    async executeDomainExpansion(arg0: bigint, arg1: bigint): Promise<string> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.executeDomainExpansion(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.executeDomainExpansion(arg0, arg1);
+            return result;
+        }
+    }
+    async getAllCharacters(): Promise<Array<Character>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllCharacters();
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllCharacters();
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getBattle(arg0: bigint): Promise<Battle> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getBattle(arg0);
+                return from_candid_Battle_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getBattle(arg0);
+            return from_candid_Battle_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getCharacterByName(arg0: string): Promise<Character> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCharacterByName(arg0);
+                return from_candid_Character_n2(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCharacterByName(arg0);
+            return from_candid_Character_n2(this._uploadFile, this._downloadFile, result);
         }
     }
     async getCharactersByAttack(): Promise<Array<Character>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getCharactersByAttack();
-                return result;
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getCharactersByAttack();
-            return result;
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
         }
     }
     async getCharactersByDefense(): Promise<Array<Character>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getCharactersByDefense();
-                return result;
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getCharactersByDefense();
-            return result;
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
         }
     }
     async getCharactersByEnergy(): Promise<Array<Character>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getCharactersByEnergy();
-                return result;
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getCharactersByEnergy();
-            return result;
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getMatch(arg0: bigint): Promise<Match> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.getMatch(arg0);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getMatch(arg0);
-            return result;
-        }
-    }
+}
+function from_candid_Battle_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Battle): Battle {
+    return from_candid_record_n6(_uploadFile, _downloadFile, value);
+}
+function from_candid_Character_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Character): Character {
+    return from_candid_record_n3(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    elementalResistances: {
+        fire: bigint;
+        wind: bigint;
+        lightning: bigint;
+    };
+    name: string;
+    moveset: Array<string>;
+    virusType: [] | [string];
+    speed: bigint;
+    defense: bigint;
+    cursedEnergy: bigint;
+    ultimate: string;
+    personalBest: bigint;
+    abilities: Array<string>;
+    attack: bigint;
+    domainExpansion: _DomainExpansion;
+    health: bigint;
+    elementalAffinity: string;
+}): {
+    elementalResistances: {
+        fire: bigint;
+        wind: bigint;
+        lightning: bigint;
+    };
+    name: string;
+    moveset: Array<string>;
+    virusType?: string;
+    speed: bigint;
+    defense: bigint;
+    cursedEnergy: bigint;
+    ultimate: string;
+    personalBest: bigint;
+    abilities: Array<string>;
+    attack: bigint;
+    domainExpansion: DomainExpansion;
+    health: bigint;
+    elementalAffinity: string;
+} {
+    return {
+        elementalResistances: value.elementalResistances,
+        name: value.name,
+        moveset: value.moveset,
+        virusType: record_opt_to_undefined(from_candid_opt_n4(_uploadFile, _downloadFile, value.virusType)),
+        speed: value.speed,
+        defense: value.defense,
+        cursedEnergy: value.cursedEnergy,
+        ultimate: value.ultimate,
+        personalBest: value.personalBest,
+        abilities: value.abilities,
+        attack: value.attack,
+        domainExpansion: value.domainExpansion,
+        health: value.health,
+        elementalAffinity: value.elementalAffinity
+    };
+}
+function from_candid_record_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    score: bigint;
+    currentTurn: bigint;
+    player1: _Character;
+    player2: _Character;
+}): {
+    score: bigint;
+    currentTurn: bigint;
+    player1: Character;
+    player2: Character;
+} {
+    return {
+        score: value.score,
+        currentTurn: value.currentTurn,
+        player1: from_candid_Character_n2(_uploadFile, _downloadFile, value.player1),
+        player2: from_candid_Character_n2(_uploadFile, _downloadFile, value.player2)
+    };
+}
+function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Character>): Array<Character> {
+    return value.map((x)=>from_candid_Character_n2(_uploadFile, _downloadFile, x));
 }
 export interface CreateActorOptions {
     agent?: Agent;

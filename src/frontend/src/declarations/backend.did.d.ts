@@ -10,25 +10,48 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface Character {
-  'name' : string,
-  'defense' : bigint,
-  'cursedEnergy' : bigint,
-  'attack' : bigint,
-  'health' : bigint,
-}
-export interface Match {
+export interface Battle {
   'score' : bigint,
   'currentTurn' : bigint,
   'player1' : Character,
   'player2' : Character,
 }
+export interface Character {
+  'elementalResistances' : {
+    'fire' : bigint,
+    'wind' : bigint,
+    'lightning' : bigint,
+  },
+  'name' : string,
+  'moveset' : Array<string>,
+  'virusType' : [] | [string],
+  'speed' : bigint,
+  'defense' : bigint,
+  'cursedEnergy' : bigint,
+  'ultimate' : string,
+  'personalBest' : bigint,
+  'abilities' : Array<string>,
+  'attack' : bigint,
+  'domainExpansion' : DomainExpansion,
+  'health' : bigint,
+  'elementalAffinity' : string,
+}
+export interface DomainExpansion {
+  'name' : string,
+  'defenseBoost' : bigint,
+  'effect' : string,
+  'powerBoost' : bigint,
+  'damageReduction' : bigint,
+}
 export interface _SERVICE {
-  'createMatch' : ActorMethod<[bigint, bigint], bigint>,
+  'createBattle' : ActorMethod<[bigint, bigint], bigint>,
+  'executeDomainExpansion' : ActorMethod<[bigint, bigint], string>,
+  'getAllCharacters' : ActorMethod<[], Array<Character>>,
+  'getBattle' : ActorMethod<[bigint], Battle>,
+  'getCharacterByName' : ActorMethod<[string], Character>,
   'getCharactersByAttack' : ActorMethod<[], Array<Character>>,
   'getCharactersByDefense' : ActorMethod<[], Array<Character>>,
   'getCharactersByEnergy' : ActorMethod<[], Array<Character>>,
-  'getMatch' : ActorMethod<[bigint], Match>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

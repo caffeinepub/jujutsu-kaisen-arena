@@ -1,53 +1,37 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Game app about Jujutsu Kaisen characters fighting in the Culling Games",
+  "summary": "2D fighting game called 'JJK Arena' featuring Streets of Tyson characters from books 1-25 with character customization, character selection, and combat mechanics including domain expansion and black flash abilities",
   "architectural_notes": [
-    "Game based on Jujutsu Kaisen anime/manga IP",
-    "Combat mechanics focused on character fighting",
-    "Culling Games arc as the setting/context"
+    "2D fighting game mechanics with keyboard-based controls",
+    "Special ability system (domain expansion, black flash)",
+    "Character-specific moveset display functionality"
   ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Dark atmospheric arena background with ominous sky and urban ruins representing Culling Games battleground (arena-bg.dim_1920x1080.png)\n- Character portrait for Yuji Itadori in combat stance with determined expression (yuji-portrait.dim_300x400.png)\n- Character portrait for Megumi Fushiguro summoning shikigami with focused expression (megumi-portrait.dim_300x400.png)\n- Character portrait for Nobara Kugisaki holding hammer and nails with confident smirk (nobara-portrait.dim_300x400.png)\n- Character portrait for Maki Zenin wielding cursed weapon with fierce look (maki-portrait.dim_300x400.png)\n- Cursed energy icon with swirling purple energy effect (cursed-energy-icon.dim_64x64.png)\n- Game logo with stylized Japanese calligraphy and dark combat theme (game-logo.dim_400x150.png)",
+  "imageRequirements": "## Required Images\n- Streets of Tyson character portrait for character from book 1, fighting pose with urban street background (streets-tyson-char1.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 2, fighting pose with urban street background (streets-tyson-char2.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 3, fighting pose with urban street background (streets-tyson-char3.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 4, fighting pose with urban street background (streets-tyson-char4.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 5, fighting pose with urban street background (streets-tyson-char5.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 6, fighting pose with urban street background (streets-tyson-char6.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 7, fighting pose with urban street background (streets-tyson-char7.dim_400x400.png)\n- Streets of Tyson character portrait for character from book 8, fighting pose with urban street background (streets-tyson-char8.dim_400x400.png)\n- JJK Arena logo with bold typography and dark purple glow effect on transparent background (jjk-arena-logo.dim_800x200.png)\n- Login screen background with dark urban street scene, purple neon lighting atmosphere (login-bg.dim_1920x1080.png)",
   "existing_features": [
     {
-      "id": "feature-create-a-game-arena-where-jujutsu-kaisen-characters-can-engage-in-turn-based-combat-during-the-culling-games",
-      "title": "Create a game arena where Jujutsu Kaisen characters can engage in turn-based combat during the Culling Games",
+      "id": "feature-update-character-selection-screen-to-display-the-new-streets-of-tyson-character-roster-with-their-themed-portraits-and-stats",
+      "title": "Update character selection screen to display the new Streets of Tyson character roster with their themed portraits and stats",
       "reqIds": [
-        "REQ-1"
+        "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-a-combat-system-where-players-can-select-actions-attack-defend-use-cursed-technique-or-special-move-during-their-turn",
-      "title": "Create a combat system where players can select actions (attack, defend, use cursed technique, or special move) during their turn",
+      "id": "feature-create-a-login-screen-accessible-by-pressing-the-q-key-that-serves-as-the-entry-point-to-the-game-using-the-existing-internet-identity-authentication-system",
+      "title": "Create a login screen accessible by pressing the Q key that serves as the entry point to the game, using the existing Internet Identity authentication system",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-design-a-character-selection-screen-where-players-can-choose-their-fighter-before-entering-the-arena",
-      "title": "Design a character selection screen where players can choose their fighter before entering the arena",
+      "id": "feature-update-all-ui-text-branding-and-references-to-reflect-jjk-arena-as-the-official-game-name-while-keeping-the-streets-of-tyson-character-theme",
+      "title": "Update all UI text, branding, and references to reflect 'JJK Arena' as the official game name while keeping the Streets of Tyson character theme",
       "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-battle-ui-that-displays-character-health-bars-cursed-energy-meters-available-abilities-and-turn-indicators",
-      "title": "Create a battle UI that displays character health bars, cursed energy meters, available abilities, and turn indicators",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-distinctive-dark-fantasy-anime-inspired-visual-theme-with-bold-contrasts-dramatic-lighting-and-a-gritty-combat-aesthetic-that-evokes-the-jujutsu-kaisen-universe-and-culling-games-atmosphere",
-      "title": "Apply a distinctive dark fantasy anime-inspired visual theme with bold contrasts, dramatic lighting, and a gritty combat aesthetic that evokes the Jujutsu Kaisen universe and Culling Games atmosphere",
-      "reqIds": [
-        "REQ-7"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -55,28 +39,45 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Jujutsu Kaisen themed game with character combat in Culling Games setting",
+      "summary": "Character roster with all Streets of Tyson characters from books 1-25",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Character customization system",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Implement a roster of playable Jujutsu Kaisen characters with unique abilities and stats (include at least Yuji Itadori, Megumi Fushiguro, Nobara Kugisaki, and Maki Zenin)",
-      "reqIds": [
-        "REQ-2"
-      ],
+      "summary": "Character selection screen for choosing fighters",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Combat controls: W=jump, A=move back, S=crouch, D=move forward, G=punch, N=domain expansion, H=black flash, K=show moveset",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-5",
-      "summary": "Implement a points system reflecting the Culling Games rules where defeating opponents earns points",
+      "summary": "Login system (Q key to access)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Replace all existing Jujutsu Kaisen characters in the backend with a complete roster of Streets of Tyson characters from books 1 through 25, maintaining the existing Character type structure (id, name, attack, defense, speed, cursedEnergy, element, abilities, domainExpansion)",
       "reqIds": [
-        "REQ-4"
+        "REQ-1"
       ],
       "status": "pending"
     }
   ],
-  "projectName": "Jujutsu Kaisen Arena",
+  "gameProjectType": "2d",
+  "projectName": "JJK Arena",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
