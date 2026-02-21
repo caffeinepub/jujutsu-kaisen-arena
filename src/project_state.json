@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Game app about Jujutsu Kaisen characters fighting in the Culling Games",
+  "architectural_notes": [
+    "Game based on Jujutsu Kaisen anime/manga IP",
+    "Combat mechanics focused on character fighting",
+    "Culling Games arc as the setting/context"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark atmospheric arena background with ominous sky and urban ruins representing Culling Games battleground (arena-bg.dim_1920x1080.png)\n- Character portrait for Yuji Itadori in combat stance with determined expression (yuji-portrait.dim_300x400.png)\n- Character portrait for Megumi Fushiguro summoning shikigami with focused expression (megumi-portrait.dim_300x400.png)\n- Character portrait for Nobara Kugisaki holding hammer and nails with confident smirk (nobara-portrait.dim_300x400.png)\n- Character portrait for Maki Zenin wielding cursed weapon with fierce look (maki-portrait.dim_300x400.png)\n- Cursed energy icon with swirling purple energy effect (cursed-energy-icon.dim_64x64.png)\n- Game logo with stylized Japanese calligraphy and dark combat theme (game-logo.dim_400x150.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-game-arena-where-jujutsu-kaisen-characters-can-engage-in-turn-based-combat-during-the-culling-games",
+      "title": "Create a game arena where Jujutsu Kaisen characters can engage in turn-based combat during the Culling Games",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-combat-system-where-players-can-select-actions-attack-defend-use-cursed-technique-or-special-move-during-their-turn",
+      "title": "Create a combat system where players can select actions (attack, defend, use cursed technique, or special move) during their turn",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-character-selection-screen-where-players-can-choose-their-fighter-before-entering-the-arena",
+      "title": "Design a character selection screen where players can choose their fighter before entering the arena",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-battle-ui-that-displays-character-health-bars-cursed-energy-meters-available-abilities-and-turn-indicators",
+      "title": "Create a battle UI that displays character health bars, cursed energy meters, available abilities, and turn indicators",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-distinctive-dark-fantasy-anime-inspired-visual-theme-with-bold-contrasts-dramatic-lighting-and-a-gritty-combat-aesthetic-that-evokes-the-jujutsu-kaisen-universe-and-culling-games-atmosphere",
+      "title": "Apply a distinctive dark fantasy anime-inspired visual theme with bold contrasts, dramatic lighting, and a gritty combat aesthetic that evokes the Jujutsu Kaisen universe and Culling Games atmosphere",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Jujutsu Kaisen themed game with character combat in Culling Games setting",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement a roster of playable Jujutsu Kaisen characters with unique abilities and stats (include at least Yuji Itadori, Megumi Fushiguro, Nobara Kugisaki, and Maki Zenin)",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement a points system reflecting the Culling Games rules where defeating opponents earns points",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Jujutsu Kaisen Arena",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

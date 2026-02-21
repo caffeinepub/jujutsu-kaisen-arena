@@ -1,0 +1,112 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-21T03:21:14.422Z",
+  "summary": "The implementation covers most core requirements including character roster, character selection screen, battle UI, combat system, points tracking, and dark fantasy visual theme. However, several specific acceptance criteria and requirements are either partially implemented or missing evidence in the provided diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Each character has at least 2-3 unique cursed techniques or abilities",
+      "reason": "Backend defines only base stats (health, attack, defense, cursedEnergy) but does not implement unique character-specific abilities. The ActionPanel provides generic actions (Attack, Defend, Cursed Technique, Special Move) that apply to all characters identically, not unique techniques per character.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/ActionPanel.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Action selection triggers appropriate combat calculations in the backend",
+      "reason": "Combat calculations are performed client-side in ActionPanel and BattleArena components via setTimeout simulations. No backend methods exist for processing combat actions or validating moves.",
+      "evidence": [
+        "frontend/src/components/ActionPanel.tsx",
+        "frontend/src/components/BattleArena.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Combat results are displayed with visual feedback",
+      "reason": "Visual feedback is limited to toast notifications. The diff shows toast.success calls but no animations, particle effects, or combat result overlays mentioned in AC.",
+      "evidence": [
+        "frontend/src/components/ActionPanel.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Points are awarded when a character defeats an opponent",
+      "reason": "No logic exists to detect character defeat or award points. The Match type includes a score field but no backend methods update it based on combat outcomes.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Points determine winner or rankings",
+      "reason": "No winner determination logic or ranking system is implemented. Score is displayed but never used to determine match outcomes.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/TurnIndicator.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Selected character's abilities and stats are previewed",
+      "reason": "CharacterCard displays stats (ATK, DEF, CE) but does not show character-specific abilities since they are not implemented.",
+      "evidence": [
+        "frontend/src/components/CharacterCard.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Ability buttons show cooldowns or costs",
+      "reason": "AbilityButton displays energy costs but no cooldown system is implemented. Characters can use abilities repeatedly without restriction beyond energy cost display.",
+      "evidence": [
+        "frontend/src/components/AbilityButton.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend sorting methods by energy, attack, and defense",
+      "reason": "Three query methods (getCharactersByEnergy, getCharactersByAttack, getCharactersByDefense) were implemented but not requested in any requirement. BuildRequest only asks for character roster retrieval.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Turn-based system implementation",
+      "reason": "While REQ-3 mentions turn-based actions, the Match type includes currentTurn field and turn switching logic, but no backend methods exist to actually advance turns or enforce turn order. This is partially implemented beyond what was requested.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/ActionPanel.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.82,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AbilityButton.tsx",
+    "frontend/src/components/ActionPanel.tsx",
+    "frontend/src/components/BattleArena.tsx",
+    "frontend/src/components/CharacterCard.tsx",
+    "frontend/src/components/CursedEnergyMeter.tsx",
+    "frontend/src/components/GameHeader.tsx",
+    "frontend/src/components/HealthBar.tsx",
+    "frontend/src/components/TurnIndicator.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useCharacters.ts",
+    "frontend/src/hooks/useCombat.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/Arena.tsx",
+    "frontend/src/pages/CharacterSelection.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

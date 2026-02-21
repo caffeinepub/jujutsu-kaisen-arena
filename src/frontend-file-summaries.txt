@@ -1,0 +1,18 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, ThemeProvider wrapper, and routes for character selection and arena pages with header and footer layout.",
+  "frontend/src/pages/CharacterSelection.tsx": "Character selection page where players choose two fighters from the roster, displays character stats preview, and navigates to arena with selected characters.",
+  "frontend/src/pages/Arena.tsx": "Arena page that initializes a match between selected characters and renders the battle arena component with background navigation.",
+  "frontend/src/components/BattleArena.tsx": "Main battle arena component displaying both fighters with portraits, health bars, cursed energy meters, and action panel over the arena background image.",
+  "frontend/src/components/CharacterCard.tsx": "Reusable character card component showing character portrait, name, and stats (attack, defense, cursed energy) with selection states.",
+  "frontend/src/components/ActionPanel.tsx": "Combat action panel displaying available actions (attack, defend, cursed technique, special move) with damage and energy cost information.",
+  "frontend/src/components/HealthBar.tsx": "Health bar component displaying current and maximum health as a custom gradient progress bar with heart icon, using inline width styling instead of Progress component props.",
+  "frontend/src/components/CursedEnergyMeter.tsx": "Cursed energy meter component displaying current and maximum energy as a custom gradient progress bar with cursed energy icon, using inline width styling instead of Progress component props.",
+  "frontend/src/components/TurnIndicator.tsx": "Turn indicator component showing current player turn and match score with badges.",
+  "frontend/src/components/AbilityButton.tsx": "Ability button component displaying ability name, description, energy cost, damage, and use button in a card layout.",
+  "frontend/src/components/GameHeader.tsx": "Game header component displaying the Jujutsu Kaisen Arena logo with dramatic glow effect.",
+  "frontend/src/hooks/useQueries.ts": "React Query hook for fetching character data from the backend using the getCharactersByEnergy method.",
+  "frontend/src/hooks/useCharacters.ts": "Custom hook wrapper for useGetCharacters query to fetch character roster data.",
+  "frontend/src/hooks/useCombat.ts": "Custom hook managing combat state including match creation, match data fetching, and action execution with React Query.",
+  "frontend/src/index.css": "Global styles with dark fantasy anime theme using OKLCH color system, custom combat glow utilities, and typography settings.",
+  "frontend/tailwind.config.js": "Tailwind configuration with Jujutsu Kaisen dark theme colors, custom glow shadows, Inter font family, and combat-specific animations."
+}

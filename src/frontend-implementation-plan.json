@@ -1,0 +1,137 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Jujutsu Kaisen Arena - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a game arena where Jujutsu Kaisen characters can engage in turn-based combat during the Culling Games",
+      "acceptanceCriteria": [
+        "Game arena is visually rendered with a Culling Games theme",
+        "Players can see character models or representations on screen",
+        "Combat interface allows for turn-based actions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Arena.tsx",
+          "operation": "create",
+          "description": "Create the main arena battle page component that displays the combat arena with Culling Games theme. Render the arena background using the generated image frontend/public/assets/generated/arena-bg.dim_1920x1080.png. Display both player characters with their portraits, health bars, and action buttons. Include turn-based combat logic that calls backend methods from the backend interface (createMatch, getMatch). This is a 2D game with a turn-based combat system."
+        },
+        {
+          "path": "frontend/src/components/BattleArena.tsx",
+          "operation": "create",
+          "description": "Create a reusable battle arena component that manages the combat interface layout. Display character portraits for both fighters, combat action buttons (attack, defend, cursed technique, special move), and visual feedback for combat results. Reference character portrait images: frontend/public/assets/generated/yuji-portrait.dim_300x400.png, frontend/public/assets/generated/megumi-portrait.dim_300x400.png, frontend/public/assets/generated/nobara-portrait.dim_300x400.png, frontend/public/assets/generated/maki-portrait.dim_300x400.png."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add routing for the Arena page and CharacterSelection page. Wire the new routes into the application router so users can navigate to /arena and /character-selection. Add navigation links in the main app layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create a combat system where players can select actions (attack, defend, use cursed technique, or special move) during their turn",
+      "acceptanceCriteria": [
+        "Players can view available actions for their selected character",
+        "Action selection triggers appropriate combat calculations in the backend",
+        "Combat results are displayed with visual feedback"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ActionPanel.tsx",
+          "operation": "create",
+          "description": "Create an action panel component that displays available combat actions (attack, defend, use cursed technique, special move) as interactive buttons. Wire action selections to backend match methods from the backend interface. Display visual feedback for action results including damage numbers, status effects, and turn progression."
+        },
+        {
+          "path": "frontend/src/hooks/useCombat.ts",
+          "operation": "create",
+          "description": "Create a custom hook to manage combat state and action execution. Handle action selection, call backend getMatch method to retrieve current match state, process combat results, and manage turn progression. Track current turn indicator and available actions based on character's cursed energy."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Design a character selection screen where players can choose their fighter before entering the arena",
+      "acceptanceCriteria": [
+        "Character roster is displayed with portraits or avatars",
+        "Players can click to select a character",
+        "Selected character's abilities and stats are previewed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CharacterSelection.tsx",
+          "operation": "create",
+          "description": "Create the character selection screen that displays the roster of playable characters. Use generated portrait images: frontend/public/assets/generated/yuji-portrait.dim_300x400.png, frontend/public/assets/generated/megumi-portrait.dim_300x400.png, frontend/public/assets/generated/nobara-portrait.dim_300x400.png, frontend/public/assets/generated/maki-portrait.dim_300x400.png. Fetch character data using backend methods (getCharactersByAttack, getCharactersByDefense, getCharactersByEnergy) from the backend interface. Display character stats (health, attack, defense, cursed energy) and abilities in a preview panel when a character is clicked. Include a confirm button that navigates to /arena with selected character."
+        },
+        {
+          "path": "frontend/src/components/CharacterCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable character card component that displays a character's portrait, name, and key stats. Accept character data from the Character interface type. Make the card interactive with hover effects and click handlers for selection. Show visual indication when a character is selected."
+        },
+        {
+          "path": "frontend/src/hooks/useCharacters.ts",
+          "operation": "create",
+          "description": "Create a custom hook to fetch and manage character roster data from the backend. Call getCharactersByAttack, getCharactersByDefense, or getCharactersByEnergy methods from the backend interface. Provide loading states and error handling for character data retrieval."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create a battle UI that displays character health bars, cursed energy meters, available abilities, and turn indicators",
+      "acceptanceCriteria": [
+        "Health and cursed energy are shown as visual bars or meters",
+        "Current turn is clearly indicated",
+        "Ability buttons are interactive and show cooldowns or costs"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HealthBar.tsx",
+          "operation": "create",
+          "description": "Create a health bar component that displays current and maximum health as a visual progress bar. Use dark red color scheme with smooth animations for health changes. Accept current and max health values as props based on the Character interface."
+        },
+        {
+          "path": "frontend/src/components/CursedEnergyMeter.tsx",
+          "operation": "create",
+          "description": "Create a cursed energy meter component that displays current and maximum cursed energy. Use the generated cursed energy icon frontend/public/assets/generated/cursed-energy-icon.dim_64x64.png. Style with purple/violet colors to represent cursed energy. Show energy cost for abilities and animate energy consumption."
+        },
+        {
+          "path": "frontend/src/components/TurnIndicator.tsx",
+          "operation": "create",
+          "description": "Create a turn indicator component that clearly shows whose turn it is in the battle. Use the currentTurn field from the Match interface. Display with prominent visual styling and animations when turn changes."
+        },
+        {
+          "path": "frontend/src/components/AbilityButton.tsx",
+          "operation": "create",
+          "description": "Create an ability button component for cursed techniques and special moves. Display ability name, cursed energy cost using the cursed energy icon frontend/public/assets/generated/cursed-energy-icon.dim_64x64.png, and cooldown status. Disable button when insufficient energy or ability is on cooldown."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a distinctive dark fantasy anime-inspired visual theme with bold contrasts, dramatic lighting, and a gritty combat aesthetic that evokes the Jujutsu Kaisen universe and Culling Games atmosphere",
+      "acceptanceCriteria": [
+        "Color palette uses dark tones with vibrant accent colors (reds, purples, electric blues)",
+        "Typography is bold and dramatic, suitable for combat scenarios",
+        "Layout emphasizes intensity and action with dynamic visual elements"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply dark fantasy anime-inspired theme with custom CSS variables for the Jujutsu Kaisen aesthetic. Define color palette with dark base tones (#0a0a0a, #1a1a1a) and vibrant accents (crimson red #dc2626, electric purple #a855f7, electric blue #3b82f6). Add dramatic text shadows, gradient overlays, and glow effects for cursed energy. Define custom animations for combat effects."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration with Jujutsu Kaisen theme colors and custom utilities. Add dark theme colors (black, gray-900, gray-800), accent colors (red-600, purple-500, blue-500), and custom font families for bold dramatic typography. Configure custom spacing and border radius for combat UI elements."
+        },
+        {
+          "path": "frontend/src/components/GameHeader.tsx",
+          "operation": "create",
+          "description": "Create a game header component that displays the game logo using frontend/public/assets/generated/game-logo.dim_400x150.png. Style with dramatic lighting effects and position at the top of all game screens. Include navigation elements with dark fantasy aesthetic."
+        }
+      ]
+    }
+  ]
+}

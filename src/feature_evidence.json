@@ -1,0 +1,105 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-game-arena-where-jujutsu-kaisen-characters-can-engage-in-turn-based-combat-during-the-culling-games",
+      "featureTitle": "Create a game arena where Jujutsu Kaisen characters can engage in turn-based combat during the Culling Games",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/BattleArena.tsx",
+        "frontend/src/pages/Arena.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-combat-system-where-players-can-select-actions-attack-defend-use-cursed-technique-or-special-move-during-their-turn",
+      "featureTitle": "Create a combat system where players can select actions (attack, defend, use cursed technique, or special move) during their turn",
+      "files": [
+        "frontend/src/components/ActionPanel.tsx",
+        "frontend/src/hooks/useCombat.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-character-selection-screen-where-players-can-choose-their-fighter-before-entering-the-arena",
+      "featureTitle": "Design a character selection screen where players can choose their fighter before entering the arena",
+      "files": [
+        "frontend/src/components/CharacterCard.tsx",
+        "frontend/src/hooks/useCharacters.ts",
+        "frontend/src/pages/CharacterSelection.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-battle-ui-that-displays-character-health-bars-cursed-energy-meters-available-abilities-and-turn-indicators",
+      "featureTitle": "Create a battle UI that displays character health bars, cursed energy meters, available abilities, and turn indicators",
+      "files": [
+        "frontend/src/components/AbilityButton.tsx",
+        "frontend/src/components/CursedEnergyMeter.tsx",
+        "frontend/src/components/HealthBar.tsx",
+        "frontend/src/components/TurnIndicator.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-distinctive-dark-fantasy-anime-inspired-visual-theme-with-bold-contrasts-dramatic-lighting-and-a-gritty-combat-aesthetic-that-evokes-the-jujutsu-kaisen-universe-and-culling-games-atmosphere",
+      "featureTitle": "Apply a distinctive dark fantasy anime-inspired visual theme with bold contrasts, dramatic lighting, and a gritty combat aesthetic that evokes the Jujutsu Kaisen universe and Culling Games atmosphere",
+      "files": [
+        "frontend/src/components/GameHeader.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
